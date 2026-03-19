@@ -36,10 +36,6 @@ echo [현재 브랜치: %current_branch%]
 echo ===================================================
 echo.
 
-:: 3. 설정 값 입력받기
-set target_branch=%current_branch%
-set /p target_branch="푸시할 원격 브랜치명을 확인/수정하시오 (기본값 [%current_branch%] 적용): "
-
 set /p count="30분 간격으로 하나씩 푸시할 커밋의 총 개수를 입력하시오: "
 
 if "!count!"=="" (
@@ -77,8 +73,8 @@ if !push_index! equ 0 (
 )
 
 echo.
-echo 2. 대상 커밋(!push_target!)을 origin/!target_branch! 에 푸시합니다...
-git push origin !push_target!:!target_branch!
+echo 2. 대상 커밋(!push_target!)을 origin/!current_branch! 에 푸시합니다...
+git push origin !push_target!:!current_branch!
 
 :: 남은 개수 차감
 set /a count=!count! - 1
