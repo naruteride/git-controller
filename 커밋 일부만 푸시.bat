@@ -56,19 +56,13 @@ if "%commit_hash%"=="" (
     goto :eof
 )
 
-:: 5. 대상 브랜치명 확인 (기본값은 현재 브랜치)
+:: 5. 특정 커밋까지만 푸시 실행
 echo.
-set target_branch=%current_branch%
-set /p input_branch="푸시할 원격 브랜치명을 확인/수정하시오 (기본값 [%current_branch%] 적용): "
-if not "%input_branch%"=="" set target_branch=%input_branch%
-
-:: 6. 특정 커밋까지만 푸시 실행
-echo.
-echo [origin] 원격 저장소의 [%target_branch%] 브랜치에 [%commit_hash%] 커밋까지만 반영합니다...
-echo 실행 명령어: git push origin %commit_hash%:%target_branch%
+echo [origin] 원격 저장소의 [%current_branch%] 브랜치에 [%commit_hash%] 커밋까지만 반영합니다...
+echo 실행 명령어: git push origin %commit_hash%:%current_branch%
 echo.
 
-git push origin %commit_hash%:%target_branch%
+git push origin %commit_hash%:%current_branch%
 
 echo.
 echo 작업이 완료되었습니다.
