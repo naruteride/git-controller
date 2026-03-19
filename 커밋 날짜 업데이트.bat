@@ -38,16 +38,17 @@ if not exist ".git" (
 )
 
 :: 3. 현재 작업 위치 및 브랜치 확인
-echo.
-echo [현재 작업 위치: %CD%]
-
-:: git 명령어를 실행하고 결과(현재 브랜치명)를 변수에 저장
 for /f "delims=" %%i in ('git branch --show-current') do set "current_branch=%%i"
+
+echo.
+echo ===================================================
+echo [현재 작업 위치: %CD%]
 echo [현재 브랜치: %current_branch%]
+echo ===================================================
 echo.
 
 :: 4. 변경할 커밋 개수를 입력받음
-set /p count="갱신할 최근 커밋의 개수를 입력하시오: "
+set /p count="날짜를 갱신할 최근 커밋의 개수를 입력하시오: "
 
 :: 커밋 개수 입력값 검증
 if "%count%"=="" (
